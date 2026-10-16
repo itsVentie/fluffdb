@@ -1,6 +1,5 @@
 use std::collections::BTreeMap;
 
-
 #[derive(Default)]
 pub struct MemTable {
     map: BTreeMap<Vec<u8>, Vec<u8>>,
@@ -18,7 +17,7 @@ impl MemTable {
     pub fn insert(&mut self, key: Vec<u8>, value: Vec<u8>) {
         let k_len = key.len();
         let v_len = value.len();
-        
+
         if let Some(old_val) = self.map.insert(key, value) {
             self.byte_size = self.byte_size - old_val.len() + v_len;
         } else {
